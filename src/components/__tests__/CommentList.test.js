@@ -10,7 +10,7 @@ beforeEach(() => {
     const initialState = {
         comments: ['Comment 1', 'Comment 2']
     };
-    
+
     wrapped = mount(
         <Root initialState={initialState}>
             <CommentList />
@@ -19,5 +19,10 @@ beforeEach(() => {
 });
 
 it('creates one li per comment', () => {
+    expect(wrapped.find('li').length).toEqual(2);
+});
 
+it('renders text from each comment', () => {
+    expect(wrapped.render().text()).toContain('Comment 1');
+    expect(wrapped.render().text()).toContain('Comment 2');
 });
